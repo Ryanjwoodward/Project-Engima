@@ -7,10 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const createCodeSection = document.getElementById('create-code-section');
     const gameplaySection = document.getElementById('gameplay-section');
     const createGameForm = document.getElementById('create-game-form');
+
     let lastColoredDot = null; // Keep track of the last colored dot for undo functionality
     let currentResponseDotIndex = 0; // Track the current dot index in the response row
     let currentResponseRowIndex = 0; // Track the current row index in the response section
     const responseDotHistory = []; // Keep track of the response dots' history
+
+    let currentGuessDotIndex = 0; // Track the current dot index in the guess row
+    let currentGuessRowIndex = 0; // Track the current row index in the guess section
+    const guessDotHistory = []; // Keep track of the guess dots' history
 
     // Ensure the create-game-section is visible on page load
     createGameSection.style.display = 'flex';
@@ -118,6 +123,13 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('white-dot').addEventListener('click', () => handleResponseDotClick('white'));
         document.getElementById('undo-red-white-dots').addEventListener('click', undoLastResponseDot);
         document.getElementById('submit-red-white-dots').addEventListener('click', submitResponseRow);
+
+        // Add event listeners for codebreaker dots
+        document.querySelectorAll('#player2-colored-dots-container .dot').forEach(dot => {
+            dot.addEventListener('click', () => handleGuessDotClick(dot));
+        });
+        document.getElementById('undo-colored-dots').addEventListener('click', undoLastGuessDot);
+        document.getElementById('submit-colored-dots').addEventListener('click', submitGuessRow);
     }
 
     function populateSecretCodeDots(secretCode) {
@@ -199,9 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentDot = currentResponseDots[currentResponseDotIndex];
             if (currentDot) {
                 currentDot.style.backgroundColor = color;
-                lastColoredDot = currentDot; // Keep track of the last colored dot for undo functionality
-                responseDotHistory.push(currentDot); // Store the dot in the history array
-                currentResponseDotIndex++; // Move to the next dot
+                lastColoredDot = currentDot;
+                currentResponseDotIndex++;
+                responseDotHistory.push(currentDot);
             }
         }
     }
@@ -209,38 +221,42 @@ document.addEventListener('DOMContentLoaded', function() {
     function undoLastResponseDot() {
         if (responseDotHistory.length > 0) {
             const lastDot = responseDotHistory.pop();
-            lastDot.style.backgroundColor = '';
+            lastDot.style.backgroundColor = '#494949';
             currentResponseDotIndex--;
-            if (responseDotHistory.length > 0) {
-                lastColoredDot = responseDotHistory[responseDotHistory.length - 1];
-            } else {
-                lastColoredDot = null;
-            }
         }
     }
 
     function submitResponseRow() {
-        // Move to the next row
-        const totalRows = document.querySelectorAll('#gameboard .response').length;
-        if (currentResponseRowIndex < totalRows - 1) {
-            // Move to the next row
-            currentResponseRowIndex++;
-            currentResponseDotIndex = 0; // Reset the dot index for the new row
+        currentResponseDotIndex = 0;
+        currentResponseRowIndex++;
+        responseDotHistory.length = 0; // Clear the history after submission
+    }
 
-            // Highlight the new row's dots
-            document.querySelectorAll('#gameboard .response')[currentResponseRowIndex].querySelectorAll('.dot')
-                .forEach(dot => {
-                    dot.style.backgroundColor = ''; // Clear previous colors
-                });
-
-            // Optionally: Add functionality to indicate the current row to the user
-            document.querySelectorAll('#gameboard .response').forEach((row, index) => {
-                row.classList.toggle('active-row', index === currentResponseRowIndex);
-            });
-        } else {
-            // Optionally handle the case when all rows are filled
-            alert('All rows have been used.');
+    function handleGuessDotClick(dot) {
+        const currentGuessRow = document.querySelectorAll('#gameboard .guess')[currentGuessRowIndex];
+        const currentGuessDots = currentGuessRow.querySelectorAll('.dot');
+        if (currentGuessDotIndex < currentGuessDots.length) {
+            const currentDot = currentGuessDots[currentGuessDotIndex];
+            if (currentDot) {
+                currentDot.style.backgroundColor = dot.dataset.color;
+                lastColoredDot = currentDot;
+                currentGuessDotIndex++;
+                guessDotHistory.push(currentDot);
+            }
         }
     }
-});
 
+    function undoLastGuessDot() {
+        if (guessDotHistory.length > 0) {
+            const lastDot = guessDotHistory.pop();
+            lastDot.style.backgroundColor = '#494949';
+            currentGuessDotIndex--;
+        }
+    }
+
+    function submitGuessRow() {
+        currentGuessDotIndex = 0;
+        currentGuessRowIndex++;
+        guessDotHistory.length = 0; // Clear the history after submission
+    }
+});
