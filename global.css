@@ -1,0 +1,429 @@
+/*
+------------------------------------------------------------
+    AUTHOR      |   Ryan Woodward
+    COMPANY     |   Rampart Software Consulting LLC
+    DATE        |   July 28, 2024
+    PROJECT     |   ENIGMA
+    DESCRIPTION |   Enigma is an enehanced and advanced 
+                |   version of Mastermind
+    FILE        |   global.css
+    FILE Descr  |   global.css defines those styling
+                |   attributes used globally throughout 
+                |   the Application.
+------------------------------------------------------------
+*/
+
+:root
+{
+    --german-dark-camo-green: #0A4330;
+    --german-uni-field-grey: #687058;
+    --german-uni-london-grey: #77858E;
+    --german-uni-boot-black: #494949;
+    --mauser-wood: #A6794f;
+    --german-gunmetal-grey: #576E7C;
+    --german-ironcross-red: #CB2C33;
+    --german-ironcross-lt-grey: #D6D9CB;
+    --true-black: #0000;
+    --true-white: #FFFFFF;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'commander';
+    src: url('CommanderEdge-P587.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'schwabach';
+    src: url('Schwabachdeko-x3w5.ttf') format('truetype');
+}
+
+body
+{
+    background-color: var(--german-uni-boot-black);
+}
+
+/*
+    NAV BAR
+*/
+#navbar-container
+{
+    background-color: var(--german-uni-london-grey);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 7vh;
+}
+
+#logo-container
+{
+    width: 300px;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#logo
+{
+    font-family: 'schwabach';
+    font-size: 4vh;
+    margin-left: 10px;
+    padding: 5px;
+    color: black;
+}
+
+#navigation-buttons-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+    height: 5vh;
+}
+
+.nav-button
+{
+    font-family: 'commander';
+    margin: 5px;
+    font-size: 2.5vh;
+}
+
+.nav-button:hover
+{
+    color: var(--german-ironcross-red);
+}
+
+/*
+    CREATE A GAME WINDOW
+*/
+#create-game-section
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 15px;
+}
+
+#create-game-child
+{
+    width: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#create-game-title
+{
+    font-family: 'commander';
+    font-size: 50px;
+    margin: 10px;
+    margin-bottom: 60px;
+}
+
+#create-game-form
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.form-field-container
+{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+label
+{
+    font-size: 25px;
+    font-family: 'commander';
+}
+
+input
+{
+    font-size: 25px;
+    width: 300px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'commander';
+    border: 3px solid var(--german-uni-boot-black);
+}
+
+#create-new-game-button
+{
+    color: black;
+    background-color: var(--mauser-wood);
+    margin-left: 150px;
+    margin-top: 40px;
+}
+
+#create-new-game-button:hover
+{
+    color: black;
+    background-color: var(--german-ironcross-red);
+}
+
+/*
+    CREATE A NEW CODE
+*/
+#create-code-section
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 15px;
+}
+
+#color-selection-child
+{
+    width: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px;
+  }
+  
+  .hidden {
+      display: none;
+  }
+  
+.create-code-button
+{
+    color: black;
+    background-color: var(--mauser-wood);
+    margin-top: 30px;
+    max-width: 200px;
+}
+
+.create-code-button:hover
+{
+    color: black;
+    background-color: var(--german-ironcross-red);
+}
+
+
+/*
+    GAME PLAY SECTION
+*/
+
+#gameplay-section
+{
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    margin: 15px;
+}
+
+.gameplay-section-child
+{
+    background-color: var(--german-uni-london-grey);
+    border-radius: 15px;
+    margin: 10px;
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.game-pane-header
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 10px 0 
+}
+
+.player-pane-title
+{
+    font-size: 40px;
+    font-family: 'schwabach';
+    margin: 20px;
+}
+
+.player-subtitle
+{
+    font-family: 'commander';
+    color: var(--german-uni-boot-black);
+    margin-bottom: 50px;
+}
+
+.dots-title
+{
+    font-family: 'commander';
+    color: var(--german-uni-boot-black);
+    margin: 10px;
+}
+
+#toggle-secret-code-button
+{
+    font-family: 'commander';
+    font-size: 25px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'commander';
+    border: 3px solid var(--german-uni-boot-black);
+}
+
+.horiz-rule-divider
+{
+    width: 70%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 3px;
+    color: black;
+    background-color: var(--german-uni-boot-black);
+}
+
+#red-white-dot-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 250px;
+}
+
+#inner-button-container
+{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+#red-dot
+{
+    background-color: var(--german-ironcross-red);
+}
+
+#white-dot
+{
+    background-color: var(--true-white);
+}
+
+#code-master-button-container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#undo-red-white-dots
+{
+    margin-top: 20px;
+    font-family: 'commander';
+    font-size: 25px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'commander';
+    border: 3px solid var(--german-uni-boot-black);
+}
+
+#submit-red-white-dots
+{
+    font-family: 'commander';
+    font-size: 25px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'commander';
+    border: 3px solid var(--german-uni-boot-black);
+}
+
+#code-breaker-button-container
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 300px;
+}
+
+#undo-colored-dots
+{
+    font-family: 'commander';
+    font-size: 25px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'commander';
+    border: 3px solid var(--german-uni-boot-black);
+}
+
+#submit-colored-dots
+{
+    font-family: 'commander';
+    font-size: 25px;
+    width: 200px;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: 'commander';
+    border: 3px solid var(--german-uni-boot-black);
+}
+
+
+/*
+    GAME BOARD PANE
+*/
+
+#gameboard-container
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameboard
+{
+    border: solid 2px var(--german-uni-boot-black);
+    border-radius: 5px;
+    font-family: 'commander';
+    font-size: 22px;
+    min-width: 80%;
+}
+
+tr:nth-child(even) 
+{
+    background-color: var(--german-uni-field-grey);
+}
+
+table, th, td
+{
+    border: solid 2px var(--german-uni-boot-black);
+}
+
+th
+{
+background-color: var(--german-ironcross-red);
+}
+
+.active-row {
+    border: 3px solid var(--german-ironcross-red); /* Highlight the active row with a border */
+}
